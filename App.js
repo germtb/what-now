@@ -7,91 +7,213 @@ import {
 } from 'react-native';
 
 import words from './words';
+import adjectives from './adjectives';
+
+const pickRandom = (list) => {
+	return list[Math.floor(Math.random() * list.length)];
+};
+
+let currentThing = null;
+let	lastThing = null;
+let thingBeforeLast = null;
 
 const a = (word) => [ 'a', 'e', 'i', 'o', 'u' ].includes(word[0]) ? `an ${word}` : `a ${word}`;
 const is = plural => plural ? 'are' : 'is';
 const itThem = plural => plural ? 'them' : 'it';
 const itThey = plural => plural ? 'they' : 'it';
 
+const cacheThing = (newThing) => {
+	thingBeforeLast = lastThing;
+	lastThing = currentThing;
+	currentThing = newThing;
+};
+
+const adjective = () => {
+	return pickRandom(adjectives);
+};
+
+const thing = () => {
+	const result = `${pickRandom(words)()}`;
+	cacheThing(result);
+	return `${adjective()} ${result}`;
+};
+
+const things = () => {
+	const result = `${pickRandom(words)(true)}`;
+	cacheThing(result);
+	return `${adjective()} ${result}`;
+};
+
+const aThing = () => `${a(thing())}`;
+const conclussion = plural => `${pickRandom(conclussions)(plural)}.`;
+
 const actions = [
 	() => ({
-		action: `Build ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Peel ${aThing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Search your room for ${things()} and ${things()}.`,
+		conclussion: conclussion(true)
+	}),
+	() => ({
+		action: `Force two${things()} to face their problems.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Grab a ${thing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Weight the factors for ending your relationship with ${things()} .`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Twist ${aThing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Defeat the ${thing()} with your ${thing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Doubt the ${thing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Take sides in the eternal war between ${things()} and ${things()}.`,
+		conclussion: conclussion(true)
+	}),
+	() => ({
+		action: `Spread ${aThing()} over ${aThing()}.`,
+		conclussion: conclussion(true)
+	}),
+	() => ({
+		action: `Confirm the existance of ${things()}.`,
+		conclussion: conclussion(true)
+	}),
+	() => ({
+		action: `Perform ${aThing()} surgery on ${aThing()}.`,
+		conclussion: conclussion(true)
+	}),
+	() => ({
+		action: `Find the spark in the ${thing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Poke the ${thing()} with your ${thing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Fight evil with the only help of ${aThing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Blame ${aThing()} for your problems.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Trade ${aThing()} for a ${aThing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Find ${aThing()}.`,
+		conclussion: conclussion()
+	}),
+	() => ({
+		action: `Build ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
 		action: `Yell at your very own ${pickRandom(words)()}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Yell at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Yell at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Look at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Look at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Gather seven ${pickRandom(words)(true)}.`,
-		conclussion: `${pickRandom(conclussions)(true)}.`
+		action: `Gather seven ${things()}.`,
+		conclussion: conclussion(true)
 	}),
 	() => ({
-		action: `Look at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Look at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Look at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Look at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Look at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Look at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Look at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Look at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Picture ${a(pickRandom(words)())} in your mind.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Picture ${aThing()} in your mind.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Look at ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Look at ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
 		action: `Fight two ${pickRandom(words)(true)}.`,
-		conclussion: `${pickRandom(conclussions)(true)}.`
+		conclussion: conclussion(true)
 	}),
 	() => ({
-		action: `Propose marriage to ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Propose marriage to ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Wash your teeth with ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Wash your teeth with ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 	() => ({
-		action: `Figure how to conquer with world with the help of ${a(pickRandom(words)())}.`,
-		conclussion: `${pickRandom(conclussions)()}.`
+		action: `Figure how to conquer with world with the help of ${aThing()}.`,
+		conclussion: conclussion()
 	}),
 ];
 
 const conclussions = [
 	plural => `Then eat ${itThem(plural)}`,
 	plural => `Pretend ${itThey(plural)} ${is(plural)} your office`,
-	plural => `Pretend to be angry with ${itThem(plural)}`,
-	plural => `Act as if you were in the middle of a heavy metal concert`,
+	plural => `Be angry with ${itThem(plural)}`,
 	plural => `Now write a poem about ${itThem(plural)}`,
-	plural => `As you do it move your head more and more`,
 	plural => `Ask people around you for feedback`,
+	plural => `Ask the ${currentThing} for feedback about your ${thing()} problem`,
 	plural => `As you do it jump more and more`,
+	plural => `Jump on ${itThem(plural)} repeatedly`,
+	plural => `While you do it, cry`,
 	plural => `Record ${itThem(plural)}`,
 	plural => `Give ${plural ? 'each of them' : 'it'} a name`,
+	plural => `Enjoy it`,
+	plural => `Whisper to ${itThem(plural)} as you do`,
+	plural => `Turn ${itThem(plural)} into ${aThing()}`,
+	plural => `Now drink ${itThem(plural)}`,
+	plural => `Eat ${itThem(plural)}`,
+	plural => `Learn a lesson from ${itThem(plural)}`,
+	plural => `Preserve the feeling that is invading you`,
+	plural => `Keep ${itThem(plural)} warm`,
+	plural => `Film ${itThem(plural)}`,
+	plural => `Scare ${itThem(plural)} with ${aThing()}`,
+	plural => `Become one with ${itThem(plural)}`,
+	plural => `Find beauty in the ${currentThing}`,
+	plural => `Tell the ${currentThing} a bedtime story`,
+	plural => `Smash the ${currentThing}`,
+	plural => `Torment the ${currentThing} with your dental problems`,
+	plural => `Fold it into ${aThing()}`,
+	plural => `Invite the ${currentThing} to your prom dance`,
+	plural => `Melt it`,
+	plural => `Find the ${thing()} in the ${lastThing}`,
 ];
-
-const pickRandom = (list) => {
-	return list[Math.floor(Math.random() * list.length)];
-};
 
 export default class App extends React.Component {
 
